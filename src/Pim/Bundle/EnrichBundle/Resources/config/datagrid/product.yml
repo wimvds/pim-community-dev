@@ -73,23 +73,23 @@ datagrid:
                 tab:       pim-product-edit-form-attributes
                 icon:      pencil
                 link:      edit_link
-            edit_categories:
-                type:  tab-redirect
-                label: Classify the product
-                tab:   pim-product-edit-form-categories
-                icon:  folder-close
-                link:  edit_link
-            delete:
-                type:  delete
-                label: Delete the product
-                icon:  trash
-                link:  delete_link
-                acl_resource: pim_enrich_product_remove
-            toggle_status:
-                type:  ajax
-                label: Toggle status
-                icon:  retweet
-                link:  toggle_status_link
+#            edit_categories:
+#                type:  tab-redirect
+#                label: Classify the product
+#                tab:   pim-product-edit-form-categories
+#                icon:  folder-close
+#                link:  edit_link
+#            delete:
+#                type:  delete
+#                label: Delete the product
+#                icon:  trash
+#                link:  delete_link
+#                acl_resource: pim_enrich_product_remove
+#            toggle_status:
+#                type:  ajax
+#                label: Toggle status
+#                icon:  retweet
+#                link:  toggle_status_link
         mass_actions_groups:
             bulk_actions:
                 label: pim_datagrid.mass_action_group.bulk_actions.label
