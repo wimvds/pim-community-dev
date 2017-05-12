@@ -47,7 +47,7 @@ class AttributeGroupUpdater implements ObjectUpdaterInterface
      *     'code'       => 'sizes',
      *     'sort_order' => 1,
      *     'attributes' => ['size', 'main_color'],
-     *     'label'      => [
+     *     'labels'      => [
      *         'en_US' => 'Sizes',
      *         'fr_FR' => 'Tailles'
      *     ]
@@ -84,7 +84,7 @@ class AttributeGroupUpdater implements ObjectUpdaterInterface
             $attributeGroup->setSortOrder($data);
         } elseif ('attributes' == $field) {
             $this->setAttributes($attributeGroup, $data);
-        } elseif ('label' == $field) {
+        } elseif ('labels' == $field) {
             foreach ($data as $locale => $label) {
                 $attributeGroup->setLocale($locale);
                 $attributeGroup->setLabel($label);
