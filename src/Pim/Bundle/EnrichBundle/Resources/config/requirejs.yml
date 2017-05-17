@@ -197,10 +197,10 @@ config:
                     config:
                         entity: association-type
                 pim_enrich_attribute_create:
-                    module: pim/controller/form
+                    module: pim/controller/attribute
                     aclResourceId: pim_enrich_attribute_create
                 pim_enrich_attribute_edit:
-                    module: pim/controller/form
+                    module: pim/controller/attribute
                     aclResourceId: pim_enrich_attribute_edit
                 pim_enrich_attributegroup_create:
                     module: pim/controller/form
@@ -210,10 +210,10 @@ config:
                     aclResourceId: pim_enrich_attributegroup_edit
                 pim_enrich_categorytree_create:
                     module: pim/controller/form
-                    aclResourceId:  pim_enrich_product_category_create
+                    aclResourceId: pim_enrich_product_category_create
                 pim_enrich_categorytree_edit:
                     module: pim/controller/form
-                    aclResourceId:  pim_enrich_product_category_edit
+                    aclResourceId: pim_enrich_product_category_edit
                 pim_enrich_categorytree_index:
                     module: pim/controller/form
                     aclResourceId: pim_enrich_product_category_list
@@ -467,6 +467,7 @@ config:
         pim/controller/group-type:          pimenrich/js/controller/group-type
         pim/controller/system:              pimenrich/js/controller/system
         pim/controller/user:                pimenrich/js/controller/user
+        pim/controller/attribute:           pimenrich/js/controller/attribute
 
         jquery.wizard:                      pimenrich/js/jquery.wizard
         jstree/jquery.jstree.tree_selector: pimenrich/js/jstree/jquery.jstree.tree_selector
