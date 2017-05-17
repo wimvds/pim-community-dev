@@ -4,6 +4,7 @@ namespace Pim\Bundle\EnrichBundle\Controller\Rest;
 
 use Akeneo\Component\StorageUtils\Repository\SearchableRepositoryInterface;
 use Akeneo\Component\StorageUtils\Saver\SaverInterface;
+use Akeneo\Component\StorageUtils\Remover\RemoverInterface;
 use Akeneo\Component\StorageUtils\Updater\ObjectUpdaterInterface;
 use Doctrine\ORM\EntityRepository;
 use Oro\Bundle\SecurityBundle\Annotation\AclAncestor;
@@ -11,6 +12,7 @@ use Oro\Bundle\SecurityBundle\SecurityFacade;
 use Pim\Bundle\CatalogBundle\Filter\CollectionFilterInterface;
 use Pim\Component\Catalog\Model\AttributeInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -48,6 +50,9 @@ class AttributeGroupController
     /** @var SaverInterface */
     protected $saver;
 
+    /** @var RemoverInterface */
+    protected $remover;
+
     /** @var EntityRepository */
     protected $attributeRepository;
 
@@ -68,6 +73,7 @@ class AttributeGroupController
      * @param ObjectUpdaterInterface        $updater
      * @param ValidatorInterface            $validator
      * @param SaverInterface                $saver
+     * @param RemoverInterface              $remover
      * @param EntityRepository              $attributeRepository
      * @param ObjectUpdaterInterface        $attributeUpdater
      * @param SaverInterface                $attributeSaver
@@ -81,6 +87,7 @@ class AttributeGroupController
         ObjectUpdaterInterface $updater,
         ValidatorInterface $validator,
         SaverInterface $saver,
+        RemoverInterface $remover,
         EntityRepository $attributeRepository,
         ObjectUpdaterInterface $attributeUpdater,
         SaverInterface $attributeSaver,
@@ -93,6 +100,7 @@ class AttributeGroupController
         $this->updater                            = $updater;
         $this->validator                          = $validator;
         $this->saver                              = $saver;
+        $this->remover                            = $remover;
         $this->attributeRepository                = $attributeRepository;
         $this->attributeUpdater                   = $attributeUpdater;
         $this->attributeSaver                     = $attributeSaver;
@@ -222,6 +230,24 @@ class AttributeGroupController
     }
 
     /**
+     * Remove action
+     *
+     * @param $code
+     *
+     * @return JsonResponse
+     *
+     * @AclAncestor("pim_enrich_attributegroup_remove")
+     */
+    public function removeAction($identifier)
+    {
+        $attributeGroup = $this->getAttributeGroupOr404($identifier);
+
+        $this->remover->remove($attributeGroup);
+
+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
      * Finds attribute group type by identifier or throws not found exception
      *
      * @param $identifier
@@ -242,6 +268,14 @@ class AttributeGroupController
         return $attributeGroup;
     }
 
+    /**
+     * Check that the user doesn't change the attribute list without permission
+     *
+     * @param array $attributeCodesBefore
+     * @param array $attributeCodesAfter
+     *
+     * @throws AccessDeniedHttpException
+     */
     protected function ensureAttributeCollectionRights($attributeCodesBefore, $attributeCodesAfter)
     {
         if (!$this->securityFacade->isGranted('pim_enrich_attributegroup_remove_attribute') &&

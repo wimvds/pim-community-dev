@@ -19,19 +19,19 @@ extensions:
         targetZone: title
         position: 110
 
-    # pim-attribute-group-edit-form-delete:
-    #     module: pim/attribute-group-edit-form/delete
-    #     parent: pim-attribute-group-edit-form
-    #     targetZone: buttons
-    #     aclResourceId: pim_enrich_attributegroup_remove
-    #     position: 100
-    #     config:
-    #         trans:
-    #             title: confirmation.remove.attribute_group
-    #             content: pim_enrich.confirmation.delete_item
-    #             success: flash.attribute_group.removed
-    #             fail: error.removing.attribute_group
-    #         redirect: pim_enrich_attributegroup_index
+    pim-attribute-group-edit-form-delete:
+        module: pim/attribute-group-edit-form/delete
+        parent: pim-attribute-group-edit-form
+        targetZone: buttons
+        aclResourceId: pim_enrich_attributegroup_remove
+        position: 100
+        config:
+            trans:
+                title: confirmation.remove.attribute_group
+                content: pim_enrich.confirmation.delete_item
+                success: flash.attribute_group.removed
+                fail: error.removing.attribute_group
+            redirect: pim_enrich_attributegroup_index
 
     pim-attribute-group-edit-form-save-buttons:
         module: pim/form/common/save-buttons

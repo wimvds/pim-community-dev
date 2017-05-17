@@ -40,6 +40,8 @@ config:
             fetcher: variant-group
         pim/remover/association-type:
             url: pim_enrich_associationtype_rest_remove
+        pim/remover/attribute-group:
+            url: pim_enrich_attributegroup_rest_remove
         pim/remover/group-type:
             url: pim_enrich_grouptype_rest_remove
         pim/remover/channel:
@@ -227,6 +229,9 @@ config:
                 pim_enrich_attributegroup_create:
                     module: pim/controller/form
                     aclResourceId: pim_enrich_attributegroup_create
+                pim_enrich_attributegroup_index:
+                    module: pim/controller/attribute-group/index
+                    aclResourceId: pim_enrich_attributegroup_index
                 pim_enrich_attributegroup_edit:
                     module: pim/controller/attribute-group/edit
                     aclResourceId: pim_enrich_attributegroup_edit
@@ -373,15 +378,6 @@ config:
                     aclResourceId: pim_importexport_export_profile_remove
                 oro_user_profile_update:
                     module: pim/controller/form
-                pim_enrich_attributegroup_index:
-                    module: pim/controller/template
-                    aclResourceId: pim_enrich_attributegroup_index
-                pim_enrich_attributegroup_sort:
-                    module: pim/controller/template
-                    aclResourceId: pim_enrich_attributegroup_sort
-                pim_enrich_attributegroup_remove:
-                    module: pim/controller/template
-                    aclResourceId: pim_enrich_attributegroup_remove
                 pim_enrich_locale_index:
                     module: pim/controller/common/index
                     aclResourceId: pim_enrich_locale_index
@@ -541,6 +537,7 @@ config:
         # Remover
         pim/remover/base:                pimenrich/js/remover/base-remover
         pim/remover/association-type:    pimenrich/js/remover/association-type-remover
+        pim/remover/attribute-group:     pimenrich/js/remover/attribute-group-remover
         pim/remover/group-type:          pimenrich/js/remover/group-type-remover
         pim/remover/channel:             pimenrich/js/remover/channel
         pim/remover/family:              pimenrich/js/remover/family
@@ -573,7 +570,10 @@ config:
         pim/form: pimenrich/js/product/form
 
         # Association type
-        pim/association-type-edit-form/delete:                 pimenrich/js/association-type/form/delete
+        pim/association-type-edit-form/delete: pimenrich/js/association-type/form/delete
+
+        # Attribute group
+        pim/attribute-group-edit-form/delete: pimenrich/js/attribute-group/form/delete
 
         # Group type
         pim/group-type-edit-form/delete:                 pimenrich/js/group-type/form/delete
