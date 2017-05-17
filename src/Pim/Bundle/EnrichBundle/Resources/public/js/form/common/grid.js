@@ -32,6 +32,8 @@ define([
                 });
                 this.options   = options;
 
+                delete this.options.selection;
+
                 mediator.on('datagrid:selectModel:' + this.alias, function (model) {
                     this.addElement(model.get('id'));
                 }.bind(this));

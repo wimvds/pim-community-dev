@@ -3,6 +3,7 @@
 ## Bug fixes
 
 - PIM-6376: Fix slow MongoDB queries when editing attribute options
+- PIM-6418: Fix URL too long in variant group datagrid
 
 # 1.6.14 (2017-04-21)
 
